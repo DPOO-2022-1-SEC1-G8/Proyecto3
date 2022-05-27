@@ -1,0 +1,2 @@
+Proyecto de Prueba 2<Prueba 2<Crear>Modificar>destruccion><07/04/2022<08/08/2022<Juan Felipe Serrano>Juan Rivera>Nicolas Merchan Cuestas><Primera ActividadÂ¿Primera actividad del proyectoÂ¿CrearÂ¿Null¿06/04/2022¿10:00:00¿11:00:00¿>Actividad 1Â¿DesconocidaÂ¿ModificarÂ¿Null¿09/09/2022¿10:00:12¿22:19:23¿>Actividad3¿Testeando¿Test¿Null¿21/06/2022¿10:12:14¿10:12:16¿>
+Proyecto de Prueba 1<Proyecto de prueba de la aplicacio<tipo 1>tipo2><02/04/2022<03/04/2022<Nicolas Merchan Cuestas><actividad de pruebaÂ¿Actividad para probar la aplicaciÂ¿creaciÂ¿Null¿02/04/2022¿04:33:50¿06:33:50¿>
