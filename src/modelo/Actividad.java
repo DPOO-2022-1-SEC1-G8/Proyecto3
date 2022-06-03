@@ -8,6 +8,7 @@ public class Actividad {
 	private java.util.Date fecha;
 	private java.util.Date horaInicio;
 	private java.util.Date horaFin;
+	private boolean completado;
 	
 	public Actividad(String elTitulo, String laDescripcion, String elTipo, Miembro elParticipante,
 					java.util.Date laFecha, java.util.Date laHoraInicio, java.util.Date laHoraFin) {
@@ -23,6 +24,8 @@ public class Actividad {
 		this.fecha = laFecha;
 		this.horaInicio = laHoraInicio;
 		this.horaFin = laHoraFin;
+		this.completado = false;
+
 	}
 	
 	public String darTitulo() {
@@ -63,5 +66,12 @@ public class Actividad {
 	
 	public void modificarHoraFin(java.util.Date nuevaHoraFin) {
 		this.horaFin = nuevaHoraFin;
+	}
+
+	public boolean getCompletado(){
+		return completado;
+	}
+	public void setCompletado(boolean estado){
+		completado = estado;
 	}
 }

@@ -14,6 +14,7 @@ public class Proyecto {
 	private java.util.Date fechaFin;
 	private Map<String, Miembro> mapaParticipantes;
 	private List<Actividad> listaActividades;
+	private List<PaqueteDeTrabajo> listaPaquetesDeTrabajo;
 	
 	public Proyecto(String elNombre, String laDescripcion, Date laFechaInicio) {
 		this.nombre = elNombre;
@@ -22,6 +23,7 @@ public class Proyecto {
 		this.fechaInicio = laFechaInicio;
 		this.mapaParticipantes = new HashMap<String, Miembro>();
 		this.listaActividades = new ArrayList<Actividad>();
+		this.listaPaquetesDeTrabajo = new ArrayList<PaqueteDeTrabajo>();
 	}
 
 	public String darNombre() {
@@ -61,6 +63,14 @@ public class Proyecto {
 		}
 		return listaParticipantes;
 	}
+
+	public List<PaqueteDeTrabajo> getListaPaquetesDeTrabajo(){
+		return listaPaquetesDeTrabajo;
+	}
+
+	public int getCantidadPaquetesDeTrabajo(){
+		return listaPaquetesDeTrabajo.size();
+	}
 	
 	public void agregarFechaFin(java.util.Date fechaFin) {
 		this.fechaFin = fechaFin;
@@ -79,5 +89,8 @@ public class Proyecto {
 		listaActividades.add(actividad);
 	}
 	
+	public void setListaPaquetesDeTrabajo(PaqueteDeTrabajo elPaqueteDeTrabajo){
+		listaPaquetesDeTrabajo.add(elPaqueteDeTrabajo);
+	}
 	
 }

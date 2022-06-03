@@ -338,6 +338,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
     public static void main(String[] args) throws ParseException {
 		VentanaPrincipal miVentana = new VentanaPrincipal();
 		
+		
 	}
 
 

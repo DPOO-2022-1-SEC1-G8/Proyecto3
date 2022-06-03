@@ -125,4 +125,69 @@ public class Mundo {
 		}
         return solucion;
     }
+
+	public List<PaqueteDeTrabajo> darListaPaqueteTrabajo(Proyecto elProyecto){
+		return elProyecto.getListaPaquetesDeTrabajo();
+	}
+
+	public List<Tarea> darListaTareas(PaqueteDeTrabajo elPaqueteDeTrabajo){
+		return elPaqueteDeTrabajo.getListaTareas();
+	}
+
+	public List<Actividad> darListaActividades(Tarea laTarea){
+		return laTarea.getActividades();
+	}
+
+	public void agregarPaqueteTrabajo(Proyecto elProyecto, PaqueteDeTrabajo elPaqueteDeTrabajo){
+		elProyecto.setListaPaquetesDeTrabajo(elPaqueteDeTrabajo);
+	}
+
+	public void agregarTarea(PaqueteDeTrabajo elPaqueteDeTrabajo, Tarea laTarea){
+		elPaqueteDeTrabajo.setListaTareas(laTarea);
+	}
+
+	public void agregarActividad(Tarea laTarea, Actividad laActividad){
+		laTarea.setListaActividades(laActividad);
+	}
+
+	public double darPorcentajePaquete(PaqueteDeTrabajo elPaqueteDeTrabajo){
+		return elPaqueteDeTrabajo.getPorcentajeCompletado();
+	}
+
+	public double darPorcentajeTarea(Tarea laTarea){
+		return laTarea.porcentajeCompletado();
+	}
+
+	public double darPorcentajeTotalPaquete(Proyecto elProyecto){
+		int numero_paquetes = elProyecto.getCantidadPaquetesDeTrabajo();
+		List<PaqueteDeTrabajo> lista_paquetes = darListaPaqueteTrabajo(elProyecto);
+		int contador = 0;
+		for (PaqueteDeTrabajo paqueteDeTrabajo : lista_paquetes) {
+			if(paqueteDeTrabajo.getCompletado() == true)
+			{
+				contador= contador+1;
+			}
+		}
+
+		double percent = (contador/numero_paquetes)*100;
+		return percent;
+	}
+
+	public double darPorcentajeTotalTarea(PaqueteDeTrabajo elPaqueteDeTrabajo){
+		int numero_tareas = elPaqueteDeTrabajo.getCantidadTareas();
+		List<Tarea> lista_tareas = darListaTareas(elPaqueteDeTrabajo);
+		int contador = 0;
+		for (Tarea tarea : lista_tareas) {
+			if(tarea.getCompletado() == true)
+			{
+				contador = contador+1;
+			}
+		}
+		double percent= (contador/numero_tareas)*100;
+		return percent;
+	}
+
+	public void cambiarEstadoActividad(Actividad laActividad){
+		laActividad.setCompletado(true);
+	}
 }
