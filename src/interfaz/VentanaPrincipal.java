@@ -6,6 +6,7 @@ import javax.swing.event.ListSelectionListener;
 import modelo.Actividad;
 import modelo.Miembro;
 import modelo.Mundo;
+import modelo.PaqueteDeTrabajo;
 import modelo.Proyecto;
 
 import java.awt.event.*;
@@ -36,6 +37,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private DialogoCrearMiembro dialogoCrearMiembro;
 	private DialogoCronometrarActividad dialogoCronometrarActividad;
 	private DialogoGenerarReporte dialogoGenerarReporte;
+	private DialogoGenerarGraficos dialogoGrafico;
 	// Constates que se usan como lineas de commandos en los botones de los paneles
 	public final static String COMMANDO_GUARDAR = "Porfa Guarda";
 	public final static String COMMANDO_GUARDAR_CERRAR = "Porfa Guarda y cierra: plot twist xd";
@@ -63,6 +65,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 
 	public static final String COMMANDO_DIALOGO_PAUSAR_CRONOMETRO = "pAUSA EL CRONOMETRO EN EL DIALOGO";
 	public static final String COMMANDO_DIALOGO_INICIAR_CRONOMETRO = "INICIA EL CRONOMETRO DEL DIALOGO";
+
+	public static final String COMMANDO_GRAFICOS = "CREA EL GRAFICO";
     
 	public VentanaPrincipal(){
 		// Genera el mundo
@@ -70,7 +74,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 		// Caracteristicas de la ventana principal
 		setTitle("Proyecto2");
 		setResizable(false);
-		setSize(675,600);
+		setSize(875,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Generamos los 3 paneles que vamos a usar
@@ -128,6 +132,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 			dialogoNuevaActividad = new DialogoNuevaActividad(this, listaParticipantes , listaTipos);
             
         }
+		else if(e.getActionCommand().equals(COMMANDO_GRAFICOS)){
+			String nombreProyecto= panelProyectos.getSelection();
+			Proyecto elProyecto = miMundo.getProyecto(nombreProyecto);
+
+			List<PaqueteDeTrabajo> lista_paquetes = miMundo.darListaPaqueteTrabajo(elProyecto);
+			dialogoGrafico = new DialogoGenerarGraficos(lista_paquetes);
+
+		}
 		else if(e.getActionCommand().equals(COMMANDO_CREAR_Miembro)){
 			System.out.print("COMANDO CREAR MIEMBRO");
 			dialogoCrearMiembro = new DialogoCrearMiembro(this);

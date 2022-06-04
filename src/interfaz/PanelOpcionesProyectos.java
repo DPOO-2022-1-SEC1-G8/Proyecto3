@@ -9,11 +9,12 @@ public class PanelOpcionesProyectos extends JPanel {
     private JButton btonCrearProyecto;
     private JButton btonmodificarProyecto;
     private JButton btonCrearActividad;
+    private JButton btonCrearGraficos;
 
     public PanelOpcionesProyectos(VentanaPrincipal padre) {
 
         // Caracteristicas de mi panel
-        setLayout(new GridLayout(3,1));
+        setLayout(new GridLayout(4,1));
 
         // Generamos los botones y les ponemos action listeners
         btonCrearProyecto = new JButton("CREAR NUEVO PROYECTO");
@@ -31,6 +32,10 @@ public class PanelOpcionesProyectos extends JPanel {
         btonCrearActividad.addActionListener(padre);
         add(btonCrearActividad);
 
+        btonCrearGraficos = new JButton("VER PORCENTAJES DE COMPLETACIÓN (Proyecto Seleccionado)");
+        btonCrearGraficos.setActionCommand(VentanaPrincipal.COMMANDO_GRAFICOS);
+        btonCrearGraficos.addActionListener(padre);
+        add(btonCrearGraficos);
 
 
     }

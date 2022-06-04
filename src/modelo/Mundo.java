@@ -188,6 +188,19 @@ public class Mundo {
 	}
 
 	public void cambiarEstadoActividad(Actividad laActividad){
-		laActividad.setCompletado(true);
+		if(laActividad.getCompletado() == false){
+			laActividad.setCompletado(true);
+		}
+		else{
+			laActividad.setCompletado(false);
+		}
+	}
+
+	public void cambiarEstadoTarea(Tarea laTarea){
+		laTarea.setCompletado();
+	}
+
+	public void cambiarEstadoPaquete(PaqueteDeTrabajo elPaqueteDeTrabajo){
+		elPaqueteDeTrabajo.setCompletado();
 	}
 }
