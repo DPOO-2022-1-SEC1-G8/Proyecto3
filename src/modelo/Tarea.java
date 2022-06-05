@@ -7,16 +7,12 @@ import javax.swing.event.ListDataEvent;
 public class Tarea {
     private String nombre;
     private String descripcion;
-    private Date fechaInicio;
-    private Date fechaFin;
     private boolean completado;
     private List<Actividad> listaActividades;
 
-    public Tarea(String elNombre, String laDescripcion, Date laFechaInicio, Date laFechaFin){
+    public Tarea(String elNombre, String laDescripcion){
         this.nombre =elNombre;
         this.descripcion = laDescripcion;
-        this.fechaFin = laFechaFin;
-        this.fechaInicio = laFechaInicio;
         this.listaActividades = new ArrayList<Actividad>();
         this.completado = false;
     }
@@ -33,17 +29,6 @@ public class Tarea {
         return nombre;
     }
 
-    public String getDescripcion(){
-        return descripcion;
-    }
-
-    public Date getFechaInicio(){
-        return fechaInicio;
-    }
-
-    public Date getFechaFin(){
-        return fechaFin;
-    }
 
     public void setNombre(String nuevoNombre){
         nombre = nuevoNombre;

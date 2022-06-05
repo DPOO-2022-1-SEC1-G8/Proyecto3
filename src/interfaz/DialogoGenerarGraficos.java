@@ -17,8 +17,9 @@ public class DialogoGenerarGraficos extends JDialog {
     private JList listaPaquetes;
     private JScrollPane scrollerPaquetes;
     private JButton botonAgregarPaquete;
+    //private PanelPaquetesDeTrabajo panelPaquetesDeTrabajo;
     
-    DialogoGenerarGraficos(List<PaqueteDeTrabajo> laListaPaquetes){
+    DialogoGenerarGraficos(VentanaPrincipal padre, List<PaqueteDeTrabajo> laListaPaquetes){
         setTitle("Graficas extremadamente precisas");
         setResizable(false);
         setSize(800, 650);
@@ -28,31 +29,13 @@ public class DialogoGenerarGraficos extends JDialog {
 
         JPanel panelAuxiliarArribaIzquierda = new JPanel();
 
-        JLabel labelListaPaquetes = new JLabel("Lista de Paquetes de Trabajo");
-        panelAuxiliarArribaIzquierda.add(labelListaPaquetes, BorderLayout.NORTH);
-
-        ArrayList<String> nombres = new ArrayList<String>();
-
-        for (PaqueteDeTrabajo paqueteDeTrabajo : laListaPaquetes) {
-            nombres.add(paqueteDeTrabajo.getNombre());
-        }
-
-        String[] miLista = new String[nombres.size()];
-        nombres.toArray(miLista);
-
-
-        listaPaquetes = new JList<String>(miLista);
-        listaPaquetes.setSelectedIndex(0);
-        listaPaquetes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollerPaquetes = new JScrollPane(listaPaquetes);
-        scrollerPaquetes.setPreferredSize(new DimensionUIResource(250,150));
-        panelAuxiliarArribaIzquierda.add(scrollerPaquetes, BorderLayout.WEST);
-
-        botonAgregarPaquete = new JButton("Agregar Paquete");
-        panelAuxiliarArribaIzquierda.add(botonAgregarPaquete, BorderLayout.SOUTH);
-
+        //panelPaquetesDeTrabajo = new PanelPaquetesDeTrabajo(padre, laListaPaquetes);
+        //panelAuxiliarArribaIzquierda.add(panelPaquetesDeTrabajo);
         panelAuxiliarArriba.add(panelAuxiliarArribaIzquierda);
+        
         add(panelAuxiliarArriba, BorderLayout.NORTH);
         setVisible(true);
     }
+
+
 }

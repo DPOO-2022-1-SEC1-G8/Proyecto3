@@ -13,6 +13,7 @@ import procesamiento.EscrituraDatos;
 public class Mundo {
     private Map<String, Miembro> mapaMiembros;
 	private Map<String, Proyecto> mapaProyectos;
+
 	
 	public Mundo() {
         // Cuando se genera el mundo primero tenemos que sacar los miembros
@@ -202,5 +203,18 @@ public class Mundo {
 
 	public void cambiarEstadoPaquete(PaqueteDeTrabajo elPaqueteDeTrabajo){
 		elPaqueteDeTrabajo.setCompletado();
+	}
+
+	public PaqueteDeTrabajo getPaqueteDeTrabajo(Proyecto elProyecto ,String elnombre){
+		List<PaqueteDeTrabajo> lista = elProyecto.getListaPaquetesDeTrabajo();
+		int posicion = 0;
+		int posicion_final = 0;
+		for (PaqueteDeTrabajo paqueteDeTrabajo : lista) {
+			if(elnombre.equals(paqueteDeTrabajo.getNombre())){
+				posicion_final = posicion;
+			}
+			posicion = posicion+1;
+		}
+		return lista.get(posicion_final);
 	}
 }

@@ -9,7 +9,6 @@ import java.util.Map;
 public class PaqueteDeTrabajo{
 
     private String nombre; 
-    private String descripcion;
     private List<Tarea> listaTareas;
     private boolean completado;
 

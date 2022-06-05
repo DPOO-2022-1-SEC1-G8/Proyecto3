@@ -8,6 +8,7 @@ import modelo.Miembro;
 import modelo.Mundo;
 import modelo.PaqueteDeTrabajo;
 import modelo.Proyecto;
+import modelo.Tarea;
 
 import java.awt.event.*;
 import java.text.DateFormat;
@@ -28,6 +29,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private PanelBotones panelBotones;
 	private Mundo miMundo; // Este es el link con el mundo
 	private JPanel organizacion;
+	private PanelPaquetesDeTrabajo panelPaquetes;
 
 	// Todas mis Ventanas Auxiliares
 	private DialogoNuevoProyecto dialogoCrearNuevoProyecto;
@@ -133,11 +135,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
             
         }
 		else if(e.getActionCommand().equals(COMMANDO_GRAFICOS)){
-			String nombreProyecto= panelProyectos.getSelection();
-			Proyecto elProyecto = miMundo.getProyecto(nombreProyecto);
 
+			String nombreProyecto= panelProyectos.getSelection();
+			//String nombrePaquete = panelPaquetes.getSelection();
+			Proyecto elProyecto = miMundo.getProyecto(nombreProyecto);
+			//PaqueteDeTrabajo elPaqueteDeTrabajo = miMundo.getPaqueteDeTrabajo(elProyecto, nombrePaquete);
+			
 			List<PaqueteDeTrabajo> lista_paquetes = miMundo.darListaPaqueteTrabajo(elProyecto);
-			dialogoGrafico = new DialogoGenerarGraficos(lista_paquetes);
+			//List<Tarea> lista_tareas = miMundo.darListaTareas(elPaqueteDeTrabajo);
+			dialogoGrafico = new DialogoGenerarGraficos(this, lista_paquetes);
 
 		}
 		else if(e.getActionCommand().equals(COMMANDO_CREAR_Miembro)){
