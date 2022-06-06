@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\Universidad 2022\\xchart-3.8.1\\xchart-3.8.1.jar",
+        "d:\\Universidad 2022\\xchart-3.8.1\\xchart-demo-3.8.1.jar"
+    ]
+}

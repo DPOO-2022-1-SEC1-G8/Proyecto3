@@ -43,14 +43,19 @@ public class PaqueteDeTrabajo{
     }
 
     public double getPorcentajeCompletado(){
-        int contador = 0;
-        for (Tarea tarea : listaTareas) {
+        if(listaTareas.isEmpty()){
+            return -1;
+        }
+        else{
+            int contador = 0;
+            for (Tarea tarea : listaTareas) {
             if(tarea.getCompletado() == true){
                 contador = contador+1;
             }
+            }
+            double percent = (contador/listaTareas.size())*100;
+            return percent;
         }
-        double percent = (contador/listaTareas.size())*100;
-        return percent;
     }
 
     public void setCompletado(){

@@ -48,15 +48,20 @@ public class Tarea {
 
     public double porcentajeCompletado(){
         
-        int contador = 0;
-        for (Actividad actividad : listaActividades) {
+        if(listaActividades.isEmpty()){
+            return -1;
+        }
+        else{
+            int contador = 0;
+            for (Actividad actividad : listaActividades) {
             if(actividad.getCompletado() == true){
                 contador=contador+1;
-            }
-        }        
-        double porcent = (contador/listaActividades.size())*100;
+                }
+            }        
+            double porcent = (contador/listaActividades.size())*100;
         
-        return porcent;
+            return porcent;
+        }
     }
 
     public void setCompletado(){

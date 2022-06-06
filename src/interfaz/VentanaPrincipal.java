@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private Mundo miMundo; // Este es el link con el mundo
 	private JPanel organizacion;
 	private PanelPaquetesDeTrabajo panelPaquetes;
+	private GraficaPaquetes graficoPaquete;
 
 	// Todas mis Ventanas Auxiliares
 	private DialogoNuevoProyecto dialogoCrearNuevoProyecto;
@@ -40,6 +41,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private DialogoCronometrarActividad dialogoCronometrarActividad;
 	private DialogoGenerarReporte dialogoGenerarReporte;
 	private DialogoGenerarGraficos dialogoGrafico;
+	private DialogoAnadirPaquete dialogoAnadirPaquetes;
 	// Constates que se usan como lineas de commandos en los botones de los paneles
 	public final static String COMMANDO_GUARDAR = "Porfa Guarda";
 	public final static String COMMANDO_GUARDAR_CERRAR = "Porfa Guarda y cierra: plot twist xd";
@@ -69,6 +71,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	public static final String COMMANDO_DIALOGO_INICIAR_CRONOMETRO = "INICIA EL CRONOMETRO DEL DIALOGO";
 
 	public static final String COMMANDO_GRAFICOS = "CREA EL GRAFICO";
+	public static final String COMMANDO_ANADIR_PAQUETES = "ANADE UN PAQUETE";
+	public static final String COMMANDO_CREAR_PAQUETE ="CREA PAQUETE";
     
 	public VentanaPrincipal(){
 		// Genera el mundo
@@ -83,6 +87,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 		panelProyectos = new PanelProyectos(this,miMundo.darMapaProyectos());
 		panelMiembros = new PanelMiembros(this,miMundo.darMapaMiembros());
 		panelBotones = new PanelBotones(this);
+		
 		
 		// Organizar mis paneles con los layouts y mi jpanel auxiliar organizacion
 		organizacion = new JPanel();
@@ -137,15 +142,35 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 		else if(e.getActionCommand().equals(COMMANDO_GRAFICOS)){
 
 			String nombreProyecto= panelProyectos.getSelection();
-			//String nombrePaquete = panelPaquetes.getSelection();
 			Proyecto elProyecto = miMundo.getProyecto(nombreProyecto);
-			//PaqueteDeTrabajo elPaqueteDeTrabajo = miMundo.getPaqueteDeTrabajo(elProyecto, nombrePaquete);
+
+			if(elProyecto.getListaPaquetesDeTrabajo().isEmpty()){
+				PaqueteDeTrabajo paquetePrueba = new PaqueteDeTrabajo("Prueba");
+				elProyecto.setListaPaquetesDeTrabajo(paquetePrueba);
+			}
+			panelPaquetes = new PanelPaquetesDeTrabajo(this, miMundo.darListaPaqueteTrabajo(elProyecto));
+			String nombrePaquete = panelPaquetes.getSelection();
+			PaqueteDeTrabajo elPaquete = miMundo.getPaqueteDeTrabajo(elProyecto, nombrePaquete);			
 			
 			List<PaqueteDeTrabajo> lista_paquetes = miMundo.darListaPaqueteTrabajo(elProyecto);
 			//List<Tarea> lista_tareas = miMundo.darListaTareas(elPaqueteDeTrabajo);
+			
+			//graficoPaquete = new GraficaPaquetes(miMundo.darPorcentajePaquete(elPaquete));
 			dialogoGrafico = new DialogoGenerarGraficos(this, lista_paquetes);
+		}
+		else if(e.getActionCommand().equals(COMMANDO_ANADIR_PAQUETES)){
+
+			new DialogoAnadirPaquete(this);
+		}
+		else if(e.getActionCommand().equals(COMMANDO_CREAR_PAQUETE)){
+			String nombreProyecto= panelProyectos.getSelection();
+			Proyecto elProyecto = miMundo.getProyecto(nombreProyecto);
+			String nombre = dialogoAnadirPaquetes.darBoxNombre();
+			PaqueteDeTrabajo elPaquete = new PaqueteDeTrabajo(nombre);
+			elProyecto.setListaPaquetesDeTrabajo(elPaquete);
 
 		}
+		
 		else if(e.getActionCommand().equals(COMMANDO_CREAR_Miembro)){
 			System.out.print("COMANDO CREAR MIEMBRO");
 			dialogoCrearMiembro = new DialogoCrearMiembro(this);

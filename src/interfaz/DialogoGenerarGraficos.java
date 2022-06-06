@@ -17,7 +17,7 @@ public class DialogoGenerarGraficos extends JDialog {
     private JList listaPaquetes;
     private JScrollPane scrollerPaquetes;
     private JButton botonAgregarPaquete;
-    //private PanelPaquetesDeTrabajo panelPaquetesDeTrabajo;
+    private PanelPaquetesDeTrabajo panelPaquetesDeTrabajo;
     
     DialogoGenerarGraficos(VentanaPrincipal padre, List<PaqueteDeTrabajo> laListaPaquetes){
         setTitle("Graficas extremadamente precisas");
@@ -29,11 +29,17 @@ public class DialogoGenerarGraficos extends JDialog {
 
         JPanel panelAuxiliarArribaIzquierda = new JPanel();
 
-        //panelPaquetesDeTrabajo = new PanelPaquetesDeTrabajo(padre, laListaPaquetes);
-        //panelAuxiliarArribaIzquierda.add(panelPaquetesDeTrabajo);
+        panelPaquetesDeTrabajo = new PanelPaquetesDeTrabajo(padre, laListaPaquetes);
+        panelAuxiliarArribaIzquierda.add(panelPaquetesDeTrabajo);
         panelAuxiliarArriba.add(panelAuxiliarArribaIzquierda);
-        
+
+        botonAgregarPaquete = new JButton("Agregar Paquete");
+        botonAgregarPaquete.setActionCommand(VentanaPrincipal.COMMANDO_ANADIR_PAQUETES);
+        botonAgregarPaquete.addActionListener(padre);
+        panelAuxiliarArribaIzquierda.add(botonAgregarPaquete);
+
         add(panelAuxiliarArriba, BorderLayout.NORTH);
+        
         setVisible(true);
     }
 
