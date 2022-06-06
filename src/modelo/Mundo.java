@@ -217,4 +217,17 @@ public class Mundo {
 		}
 		return lista.get(posicion_final);
 	}
+
+	public Tarea getTarea(PaqueteDeTrabajo elPaqueteDeTrabajo, String elNombre){
+		List<Tarea> lista = elPaqueteDeTrabajo.getListaTareas();
+		int posicion = 0;
+		int posicion_final = 0;
+		for (Tarea tarea : lista) {
+			if(elNombre.equals(tarea.getNombre())){
+				posicion_final = posicion;
+			}
+			posicion = posicion+1;
+		}
+		return lista.get(posicion_final);
+	}
 }

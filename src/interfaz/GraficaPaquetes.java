@@ -6,7 +6,7 @@ import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.demo.charts.pie.PieChart02;
 
 
-public class GraficaPaquetes implements ExampleChart<PieChart> {
+public class GraficaPaquetes implements ExampleChart<PieChart>{
 
     
 
@@ -15,6 +15,7 @@ public class GraficaPaquetes implements ExampleChart<PieChart> {
       ExampleChart<PieChart> exampleChart = new PieChart02();
       PieChart chart = exampleChart.getChart();
       new SwingWrapper<PieChart>(chart).displayChart();
+      
       
     }
   
@@ -26,6 +27,7 @@ public class GraficaPaquetes implements ExampleChart<PieChart> {
       PieChart chart = new PieChartBuilder().width(800).height(600).title(getClass().getSimpleName()).build();
   
       // Customize Chart
+      chart.setTitle("Porcentaje paquetes de trabajo");
       chart.addSeries("Completado", 40);
       chart.addSeries("Restante", 60);
       

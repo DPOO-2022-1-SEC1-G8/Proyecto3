@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Map;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import org.knowm.xchart.*;
+import org.knowm.xchart.demo.charts.ExampleChart;
+import org.knowm.xchart.demo.charts.pie.PieChart02;
 
 public class VentanaPrincipal extends JFrame implements ActionListener, ListSelectionListener{
 	// Clase encargada de poner la interfaz y manejar los botones de mis paneles
@@ -31,6 +34,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private JPanel organizacion;
 	private PanelPaquetesDeTrabajo panelPaquetes;
 	private GraficaPaquetes graficoPaquete;
+	private PanelTareas panelTareas;
 
 	// Todas mis Ventanas Auxiliares
 	private DialogoNuevoProyecto dialogoCrearNuevoProyecto;
@@ -42,6 +46,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 	private DialogoGenerarReporte dialogoGenerarReporte;
 	private DialogoGenerarGraficos dialogoGrafico;
 	private DialogoAnadirPaquete dialogoAnadirPaquetes;
+
 	// Constates que se usan como lineas de commandos en los botones de los paneles
 	public final static String COMMANDO_GUARDAR = "Porfa Guarda";
 	public final static String COMMANDO_GUARDAR_CERRAR = "Porfa Guarda y cierra: plot twist xd";
@@ -153,10 +158,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener, ListSele
 			PaqueteDeTrabajo elPaquete = miMundo.getPaqueteDeTrabajo(elProyecto, nombrePaquete);			
 			
 			List<PaqueteDeTrabajo> lista_paquetes = miMundo.darListaPaqueteTrabajo(elProyecto);
-			//List<Tarea> lista_tareas = miMundo.darListaTareas(elPaqueteDeTrabajo);
-			
-			//graficoPaquete = new GraficaPaquetes(miMundo.darPorcentajePaquete(elPaquete));
-			dialogoGrafico = new DialogoGenerarGraficos(this, lista_paquetes);
+			List<Tarea> lista_tareas = miMundo.darListaTareas(elPaquete);
+
+			if(lista_tareas.isEmpty()){
+				Tarea laTarea2 = new Tarea("Prueba", "");
+				miMundo.agregarTarea(elPaquete, laTarea2);
+			}
+
+			panelTareas = new PanelTareas(this, lista_tareas);
+			String nombre_tarea = panelTareas.getSelection();
+			Tarea laTarea = miMundo.getTarea(elPaquete, nombre_tarea);
+			List<Actividad> lista_actividades = laTarea.getActividades();
+			if(lista_actividades.isEmpty())
+			{	
+				Actividad laActividad = new Actividad("Prueba", "", "", null, null, null, null);
+				miMundo.agregarActividad(laTarea, laActividad);
+			}
+			dialogoGrafico = new DialogoGenerarGraficos(this, lista_paquetes, lista_tareas, lista_actividades);
 		}
 		else if(e.getActionCommand().equals(COMMANDO_ANADIR_PAQUETES)){
 

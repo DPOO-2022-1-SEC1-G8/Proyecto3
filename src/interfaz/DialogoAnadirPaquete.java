@@ -47,6 +47,7 @@ public class DialogoAnadirPaquete extends JDialog{
         btonCrear.addActionListener(padre);
         add(btonCrear,BorderLayout.SOUTH);
 
+
         setVisible(true);
 
     }
